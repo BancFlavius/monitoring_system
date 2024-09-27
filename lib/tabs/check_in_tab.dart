@@ -173,7 +173,7 @@ class CheckInTabState extends State<CheckInTab> {
 
     for (var cell in row!) {
       if (cell?.value == today) {
-        return cell?.colIndex;
+        return cell?.columnIndex;
       }
     }
     return -1; // Today's date not found

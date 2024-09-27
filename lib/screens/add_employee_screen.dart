@@ -124,7 +124,7 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
       var excel = Excel.decodeBytes(bytes);
       var table = excel.tables.keys.first;
 
-      if (excel.tables[table]?.maxCols != AppAddEmployees.kExcelColumns) {
+      if (excel.tables[table]?.maxColumns != AppAddEmployees.kExcelColumns) {
         setState(() {
           _statusExcel = "Error number of columns are not ${AppAddEmployees.kExcelColumns}";
         });

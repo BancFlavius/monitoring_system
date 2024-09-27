@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ARRK/constants/constants.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'package:googleapis/driveactivity/v2.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 //import 'package:path/path.dart';
@@ -60,15 +61,15 @@ class ExcelOfficePresence {
       var row = sheet.rows[rowIndex];
       if (row[_nameColumnIndex]?.value.toString() == name) {
         print('find name: make update');
-        row[_dateColumnIndexFound]?.value=status;
+        row[_dateColumnIndexFound]?.value=TextCellValue(status);
         break;
       } else if(row[_nameColumnIndex]?.value.toString()==null) {
         print('did not find name, add name, make update');
-        row[_nameColumnIndex]?.value=name;
+        row[_nameColumnIndex]?.value=TextCellValue(name);
         //row.setCell(_nameColumnIndex, name);
-        row[_dateColumnIndexFound]?.value=status;
+        row[_dateColumnIndexFound]?.value=TextCellValue(status);
         var excelBytes = _excel.encode();
-        await File('outputexcel\\excel.xlsx').writeAsBytes(excelBytes!);
+        // await File('outputexcel\\excel.xlsx').writeAsBytes(excelBytes!);
         print(row[_nameColumnIndex]?.value.toString());
         print(row[_dateColumnIndexFound]?.value.toString());
         break;
@@ -114,7 +115,7 @@ class ExcelOfficePresence {
 
       // Modify the Excel data
       if (sheet.maxRows > 1) {
-        sheet.rows[1][1]?.value = 'heiii';
+        sheet.rows[1][1]?.value = TextCellValue('heiii');
       }
 
       // Encode the modified Excel data
