@@ -1,0 +1,26 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - flutter clean
+    - flutter pub get
+    - flutter build apk # Replace with the appropriate build command for your target platform
+#flutter build ios
+test:
+  stage: test
+  script:
+    - flutter test # Replace with your test command
+#flutter test test/
+deploy_android:
+  stage: deploy
+  script:
+    - # Add the deployment commands for Android here
+
+deploy_ios:
+  stage: deploy
+  script:
+    - # Add the deployment commands for iOS here
